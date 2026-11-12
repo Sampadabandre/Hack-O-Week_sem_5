@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Suite - Regression & Classification</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Chart.js for visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="brand-logo">ML</div>
+                <div>
+                    <h1>Interactive ML Studio</h1>
+                    <p class="subtitle">Regression & Classification Playground • Week 7-8</p>
+                </div>
+            </div>
+            <nav class="nav-tabs">
+                <button class="tab-btn active" data-tab="regression">Regression Sandbox</button>
+                <button class="tab-btn" data-tab="classification">Classification Sandbox</button>
+                <button class="tab-btn" data-tab="benchmarks">Benchmark Reports</button>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Tab 1: Regression Sandbox -->
+            <section id="tab-regression" class="tab-content active">
+                <div class="grid-layout">
+                    <!-- Controls Panel -->
+                    <aside class="panel controls-panel">
+                        <h2>Regression Parameters</h2>
+                        
+                        <div class="control-group">
+                            <label for="poly-degree">Polynomial Degree: <span id="degree-val" class="badge">Degree 3</span></label>
+                            <input type="range" id="poly-degree" min="1" max="10" value="3" step="1">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="reg-type">Regularization Model:</label>
+                            <select id="reg-type">
+                                <option value="none">None (Ordinary Least Squares)</option>
+                                <option value="ridge">Ridge Regression (L2 Penalty)</option>
+                                <option value="lasso">Lasso Regression (L1 Penalty)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group" id="alpha-group">
+                            <label for="reg-alpha">Penalty Alpha ($\alpha$): <span id="alpha-val" class="badge">1.0</span></label>
+                            <input type="range" id="reg-alpha" min="0.01" max="20" value="1.0" step="0.1">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="noise-level">Data Noise: <span id="noise-val" class="badge">Medium</span></label>
+                            <input type="range" id="noise-level" min="1" max="15" value="6" step="1">
+                        </div>
+
+                        <button id="btn-resample-reg" class="btn primary">⚡ Regenerate Dataset</button>
+
+                        <div class="card metrics-card">
+                            <h3>Live Fit Metrics</h3>
+                            <div class="metric-grid">
+                                <div class="metric">
+                                    <span class="metric-label">MSE</span>
+                                    <span id="reg-mse" class="metric-value">0.00</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">RMSE</span>
+                                    <span id="reg-rmse" class="metric-value">0.00</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">MAE</span>
+                                    <span id="reg-mae" class="metric-value">0.00</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">R² Score</span>
+                                    <span id="reg-r2" class="metric-value">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Chart Display Panel -->
+                    <section class="panel chart-panel">
+                        <div class="panel-header">
+                            <h2>Model Fitting Visualization</h2>
+                            <span class="tag">Linear • Polynomial • Ridge • Lasso</span>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="reg-canvas"></canvas>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- Tab 2: Classification Sandbox -->
+            <section id="tab-classification" class="tab-content">
+                <div class="grid-layout">
+                    <!-- Controls Panel -->
+                    <aside class="panel controls-panel">
+                        <h2>Classification Parameters</h2>
+
+                        <div class="control-group">
+                            <label for="clf-algorithm">Algorithm:</label>
+                            <select id="clf-algorithm">
+                                <option value="logistic">Logistic Regression</option>
+                                <option value="knn">K-Nearest Neighbors (KNN)</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group" id="knn-k-group" style="display: none;">
+                            <label for="knn-k">Number of Neighbors (K): <span id="k-val" class="badge">K = 5</span></label>
+                            <input type="range" id="knn-k" min="1" max="25" value="5" step="2">
+                        </div>
+
+                        <div class="control-group" id="threshold-group">
+                            <label for="log-threshold">Decision Threshold: <span id="threshold-val" class="badge">0.50</span></label>
+                            <input type="range" id="log-threshold" min="0.1" max="0.9" value="0.5" step="0.05">
+                        </div>
+
+                        <div class="control-group">
+                            <label for="dataset-shape">Dataset Geometry:</label>
+                            <select id="dataset-shape">
+                                <option value="moons">Interlocking Moons (Non-linear)</option>
+                                <option value="blobs">Gaussian Clusters (Linear)</option>
+                            </select>
+                        </div>
+
+                        <button id="btn-resample-clf" class="btn primary">⚡ Regenerate Dataset</button>
+
+                        <div class="card metrics-card">
+                            <h3>Live Classification Metrics</h3>
+                            <div class="metric-grid">
+                                <div class="metric">
+                                    <span class="metric-label">Accuracy</span>
+                                    <span id="clf-acc" class="metric-value">0%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Precision</span>
+                                    <span id="clf-prec" class="metric-value">0%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Recall</span>
+                                    <span id="clf-rec" class="metric-value">0%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">F1-Score</span>
+                                    <span id="clf-f1" class="metric-value">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Chart Display Panel -->
+                    <section class="panel chart-panel">
+                        <div class="panel-header">
+                            <h2>Decision Boundaries & 2D Space</h2>
+                            <span class="tag">Logistic Regression vs KNN</span>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="clf-canvas" width="600" height="400"></canvas>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- Tab 3: Benchmark Reports -->
+            <section id="tab-benchmarks" class="tab-content">
+                <div class="benchmark-container">
+                    <div class="panel">
+                        <h2>Python Pipeline Execution Results</h2>
+                        <p>Summary tables exported directly from model training in <code>src/regression.py</code> and <code>src/classification.py</code>.</p>
+                        
+                        <div class="tables-grid">
+                            <div>
+                                <h3>Regression Performance</h3>
+                                <div id="reg-table-container">Loading metric tables...</div>
+                            </div>
+                            <div>
+                                <h3>Classification Performance</h3>
+                                <div id="clf-table-container">Loading metric tables...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <h2>Diagnostic Plots Gallery</h2>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <h4>Regression Model Comparison</h4>
+                                <img src="plots/regression_comparison_curves.png" alt="Regression Comparison">
+                            </div>
+                            <div class="gallery-item">
+                                <h4>Ridge vs Lasso Shrinkage</h4>
+                                <img src="plots/ridge_lasso_coefficient_shrinkage.png" alt="Ridge Lasso Shrinkage">
+                            </div>
+                            <div class="gallery-item">
+                                <h4>Classification Decision Boundaries</h4>
+                                <img src="plots/classification_decision_boundaries.png" alt="Decision Boundaries">
+                            </div>
+                            <div class="gallery-item">
+                                <h4>KNN Hyperparameter K Elbow Plot</h4>
+                                <img src="plots/knn_k_tuning_elbow.png" alt="KNN K Elbow">
+                            </div>
+                            <div class="gallery-item">
+                                <h4>ROC Curves & Confusion Matrices</h4>
+                                <img src="plots/roc_confusion_matrices.png" alt="ROC & Confusion Matrices">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

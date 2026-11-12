@@ -1,0 +1,80 @@
+{
+  "regression": [
+    {
+      "Model": "Simple Linear Regression",
+      "Train RMSE": 5.113,
+      "Test RMSE": 4.999,
+      "Train R2": 0.111,
+      "Test R2": 0.056
+    },
+    {
+      "Model": "Polynomial Reg (Degree 2)",
+      "Train RMSE": 4.75,
+      "Test RMSE": 4.245,
+      "Train R2": 0.233,
+      "Test R2": 0.319
+    },
+    {
+      "Model": "Polynomial Reg (Degree 3)",
+      "Train RMSE": 3.908,
+      "Test RMSE": 3.831,
+      "Train R2": 0.481,
+      "Test R2": 0.446
+    },
+    {
+      "Model": "Overfit Polynomial (Degree 10)",
+      "Train RMSE": 3.705,
+      "Test RMSE": 4.054,
+      "Train R2": 0.533,
+      "Test R2": 0.379
+    },
+    {
+      "Model": "Ridge Reg (Degree 10, alpha=10.0)",
+      "Train RMSE": 3.788,
+      "Test RMSE": 3.838,
+      "Train R2": 0.512,
+      "Test R2": 0.444
+    },
+    {
+      "Model": "Lasso Reg (Degree 10, alpha=0.5)",
+      "Train RMSE": 3.926,
+      "Test RMSE": 3.848,
+      "Train R2": 0.476,
+      "Test R2": 0.441
+    }
+  ],
+  "classification": [
+    {
+      "Classifier": "Logistic Regression",
+      "Accuracy": 0.867,
+      "Precision": 0.854,
+      "Recall": 0.897,
+      "F1-Score": 0.875,
+      "ROC-AUC": 0.946
+    },
+    {
+      "Classifier": "KNN (K=1, Overfit)",
+      "Accuracy": 0.867,
+      "Precision": 0.872,
+      "Recall": 0.872,
+      "F1-Score": 0.872,
+      "ROC-AUC": 0.866
+    },
+    {
+      "Classifier": "KNN (K=5, Optimal)",
+      "Accuracy": 0.88,
+      "Precision": 0.857,
+      "Recall": 0.923,
+      "F1-Score": 0.889,
+      "ROC-AUC": 0.955
+    },
+    {
+      "Classifier": "KNN (K=25, Smoothed)",
+      "Accuracy": 0.907,
+      "Precision": 0.881,
+      "Recall": 0.949,
+      "F1-Score": 0.914,
+      "ROC-AUC": 0.971
+    }
+  ]
+}
