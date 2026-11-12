@@ -1,0 +1,120 @@
+================================================================================
+        STUDENT PERFORMANCE & ACADEMIC ANALYTICS SUMMARY REPORT
+================================================================================
+
+1. EXECUTIVE SUMMARY & COHORT OVERVIEW
+--------------------------------------------------------------------------------
+  * Total Students Analyzed : 150
+  * Mean Final Exam Score   : 75.79 (Std Dev: 17.49)
+  * Final Score Range       : Min 35.00 | Max 99.00
+  * Mean Weighted Score     : 74.83
+  * At-Risk Students        : 17 (11.33% of cohort)
+
+2. ANSWERS TO CORE RESEARCH QUESTIONS
+--------------------------------------------------------------------------------
+Q1: What is the average final score?
+    --> Overall Average Final Score: 75.79
+
+Q2: Which department has the highest average score?
+    --> Department: CS with average score of 89.13
+
+Q3: Does attendance appear to affect final scores?
+    --> Yes, positive correlation of r = +0.9726
+        Higher attendance strongly associates with higher academic achievement.
+
+Q4: Does study time appear to affect final scores?
+    --> Yes, strong positive correlation of r = +0.9582
+        Students investing more weekly study hours achieve significantly higher exam scores.
+
+Q5: What percentage of students are at risk?
+    --> 11.33% (17 out of 150 students)
+
+Q6: Who are the top 10 students?
+    --> (Ranked by Weighted Score)
+         1. STU1102 | Shweta Phadke          | Dept: DS | Weighted: 97.80 | Final: 99.00 | GPA: 4.00
+         2. STU1136 | Devika Marathe         | Dept: CS | Weighted: 97.20 | Final: 99.00 | GPA: 4.00
+         3. STU1066 | Nandini Dutta          | Dept: CS | Weighted: 97.10 | Final: 98.00 | GPA: 3.99
+         4. STU1042 | Simran Kaur            | Dept: DS | Weighted: 96.90 | Final: 99.00 | GPA: 4.00
+         5. STU1142 | Maitreyi Phatak        | Dept: DS | Weighted: 96.20 | Final: 98.00 | GPA: 3.98
+         6. STU1016 | Divya Menon            | Dept: CS | Weighted: 95.90 | Final: 98.00 | GPA: 3.98
+         7. STU1116 | Radhika Chiplunkar     | Dept: CS | Weighted: 95.20 | Final: 97.00 | GPA: 3.97
+         8. STU1082 | Garima Sehgal          | Dept: DS | Weighted: 95.20 | Final: 97.00 | GPA: 3.96
+         9. STU1060 | Shalini Venkatesh      | Dept: BT | Weighted: 94.20 | Final: 96.00 | GPA: 3.94
+        10. STU1002 | Ananya Patel           | Dept: DS | Weighted: 94.20 | Final: 96.00 | GPA: 3.95
+
+Q7: Which department has the highest average GPA?
+    --> Department: CS with average GPA of 3.68
+
+Q8: Correlation Matrix with Final Score:
+    - Attendance vs Final Score   : r = +0.9726
+    - Study Hours vs Final Score  : r = +0.9582
+    - Previous GPA vs Final Score : r = +0.9906
+
+3. DEPARTMENT-WISE PERFORMANCE SUMMARY (Built with Dict Comprehensions)
+--------------------------------------------------------------------------------
+Dept    Count   Avg Final     Avg Weighted    Avg GPA   
+--------------------------------------------------------
+BT      30      76.10         75.51           3.31      
+CS      30      89.13         87.22           3.68      
+DS      30      84.37         82.64           3.52      
+EE      30      64.57         64.36           2.97      
+ME      30      64.80         64.43           2.98      
+
+4. PERFORMANCE CATEGORY BREAKDOWN
+--------------------------------------------------------------------------------
+  * Excellent   :  48 students (32.00%)
+  * Good        :  54 students (36.00%)
+  * Average     :  31 students (20.67%)
+  * At Risk     :  17 students (11.33%)
+
+5. HONORS STUDENTS LIST (Generated via List Comprehension - Score >= 90)
+--------------------------------------------------------------------------------
+  [HONORS] STU1002 - Ananya Patel (DS: 94.2)
+  [HONORS] STU1010 - Kavya Iyer (BT: 92.2)
+  [HONORS] STU1016 - Divya Menon (CS: 95.9)
+  [HONORS] STU1022 - Riya Saxena (DS: 91.2)
+  [HONORS] STU1031 - Pranav Hegde (CS: 93.2)
+  [HONORS] STU1036 - Bhavna Mehta (CS: 92.2)
+  [HONORS] STU1042 - Simran Kaur (DS: 96.9)
+  [HONORS] STU1051 - Ashwin Sundaram (CS: 91.2)
+  [HONORS] STU1060 - Shalini Venkatesh (BT: 94.2)
+  [HONORS] STU1066 - Nandini Dutta (CS: 97.1)
+  [HONORS] STU1072 - Esha Mukherjee (DS: 93.2)
+  [HONORS] STU1080 - Rupal Vora (BT: 90.2)
+  [HONORS] STU1082 - Garima Sehgal (DS: 95.2)
+  [HONORS] STU1096 - Pratibha Jagtap (CS: 94.2)
+  [HONORS] STU1101 - Sameer Deshpande (CS: 90.2)
+  [HONORS] STU1102 - Shweta Phadke (DS: 97.8)
+  [HONORS] STU1110 - Anupama Bapat (BT: 92.2)
+  [HONORS] STU1116 - Radhika Chiplunkar (CS: 95.2)
+  [HONORS] STU1121 - Mihir Abhyankar (CS: 91.2)
+  [HONORS] STU1130 - Manasi Jog (BT: 90.2)
+  [HONORS] STU1132 - Anagha Damle (DS: 93.2)
+  [HONORS] STU1136 - Devika Marathe (CS: 97.2)
+  [HONORS] STU1142 - Maitreyi Phatak (DS: 96.2)
+  [HONORS] STU1146 - Vaishnavi Agarkhed (CS: 92.2)
+  [HONORS] STU1150 - Kasturi Kunte (BT: 94.2)
+
+6. AT-RISK STUDENTS INTERVENTION LIST (Generated via List Comprehension - Score < 50)
+--------------------------------------------------------------------------------
+  [ALERT] STU1009 (Aditya Mishra - Dept: ME, Score: 44.7)
+  [ALERT] STU1019 (Manish Kapoor - Dept: ME, Score: 47.8)
+  [ALERT] STU1028 (Pallavi Patil - Dept: EE, Score: 49.1)
+  [ALERT] STU1043 (Yash Singhal - Dept: EE, Score: 47.4)
+  [ALERT] STU1049 (Girish Murthy - Dept: ME, Score: 41.7)
+  [ALERT] STU1055 (Devendra Joshi - Dept: BT, Score: 43.7)
+  [ALERT] STU1073 (Lalit Bishnoi - Dept: EE, Score: 40.4)
+  [ALERT] STU1079 (Siddhesh Mane - Dept: ME, Score: 48.8)
+  [ALERT] STU1089 (Mahesh Gaikwad - Dept: ME, Score: 38.4)
+  [ALERT] STU1095 (Santosh Bhosale - Dept: BT, Score: 45.4)
+  [ALERT] STU1109 (Shekhar Godbole - Dept: ME, Score: 44.4)
+  [ALERT] STU1113 (Sujay Barve - Dept: EE, Score: 46.8)
+  [ALERT] STU1119 (Shantanu Agashe - Dept: ME, Score: 36.8)
+  [ALERT] STU1125 (Mandar Phadnis - Dept: BT, Score: 49.8)
+  [ALERT] STU1133 (Atharva Vaze - Dept: EE, Score: 42.4)
+  [ALERT] STU1139 (Jayant Mujumdar - Dept: ME, Score: 47.8)
+  [ALERT] STU1149 (Ameya Deshpande - Dept: ME, Score: 39.4)
+
+================================================================================
+End of Academic Analytics Report
+================================================================================
